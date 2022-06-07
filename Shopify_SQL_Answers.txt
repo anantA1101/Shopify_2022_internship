@@ -1,0 +1,28 @@
+Question 1:
+SELECT S.ShipperID, S.ShipperName , Count(O.OrderID) as No_of_Ord_shipped
+FROM Orders O , Shippers S
+WHERE O.ShipperID = S.ShipperID
+Group BY S.ShipperID
+HAVING S.ShipperName = 'Speedy Express'
+
+Answer: 54 Orders
+
+Question 2:
+SELECT O.EmployeeID, E.LastName ,Count(O.OrderID) as NumberOfOrders
+FROM Orders O , Employees E
+WHERE O.EmployeeID = E.EmployeeID
+Group by O.EmployeeID 
+Order by NumberOfOrders desc
+LIMIT 1
+
+Answer: Peacock , 40 Orders
+
+Question 3:
+SELECT  OD.ProductID, C.Country , P.ProductName ,SUM(OD.Quantity) as Quantity_of_Product
+FROM OrderDetails OD, Orders O, Customers C , Products P
+Where OD.OrderID = O.OrderID and O.CustomerID = C.CustomerID and C.Country= "Germany" and OD.ProductID = P.ProductID 
+Group By OD.ProductID 
+Order by Quantity_of_Product desc
+LIMIT 1
+
+Answer : Boston Crab Meat , 160 orders
